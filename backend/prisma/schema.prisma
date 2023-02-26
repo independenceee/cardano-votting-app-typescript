@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -42,8 +41,8 @@ model Candidate {
   name        String
   description String
   image       String?
-  candidateId String
-  election    Election @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  electionId  String
+  election    Election @relation(fields: [electionId], references: [id], onDelete: Cascade)
 
   @@map("candidate")
 }
