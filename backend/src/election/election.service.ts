@@ -24,13 +24,18 @@ export class ElectionService {
 
     async createElection(userId: string, dto: CreateElectionDto) {
         try {
-            const election = await this.prisma.election.create({
-                data: {
-                    userId,
-                    ...dto,
-                },
-            });
-        } catch (error) {}
+            // const election = await this.prisma.election.create({
+            //     data: {
+            //         userId,
+            //         ...dto,
+            //     },
+            // });
+            return {
+                message: "Nguyễn Duy Khánh"
+            }
+        } catch (error) {
+            throw new ForbiddenException(error);
+        }
     }
 
     async editElectionById(

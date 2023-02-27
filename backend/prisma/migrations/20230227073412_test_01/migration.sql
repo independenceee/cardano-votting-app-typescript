@@ -18,6 +18,9 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "elections" (
     "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "endedAt" TIMESTAMP(3) NOT NULL,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "mainQuestion" TEXT,
     "description" TEXT,
     "nameOrganization" TEXT,
@@ -29,10 +32,12 @@ CREATE TABLE "elections" (
 -- CreateTable
 CREATE TABLE "candidate" (
     "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "image" TEXT,
-    "candidateId" TEXT NOT NULL,
+    "electionId" TEXT NOT NULL,
 
     CONSTRAINT "candidate_pkey" PRIMARY KEY ("id")
 );
@@ -41,4 +46,4 @@ CREATE TABLE "candidate" (
 ALTER TABLE "elections" ADD CONSTRAINT "elections_userId_fkey" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "candidate" ADD CONSTRAINT "candidate_candidateId_fkey" FOREIGN KEY ("candidateId") REFERENCES "elections"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "candidate" ADD CONSTRAINT "candidate_electionId_fkey" FOREIGN KEY ("electionId") REFERENCES "elections"("id") ON DELETE CASCADE ON UPDATE CASCADE;

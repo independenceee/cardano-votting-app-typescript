@@ -8,36 +8,37 @@ datasource db {
 }
 
 model User {
-  id        String   @id() @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id            String     @id() @default(uuid())
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
   firstName     String?
   lastName      String?
-  email         String
+  email         String     @unique
   hash          String
   addressWallet String?
-
-  elections Election[]
+  elections     Election[]
 
   @@map("users") // gán cho biến môi trường
 }
 
 model Election {
-  id               String  @id() @default(uuid())
-  mainQuestion     String?
-  description      String?
-  nameOrganization String?
-
-  userId     String
-  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  candidates Candidate[]
+  id               String      @id() @default(uuid())
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  mainQuestion     String
+  description      String
+  nameOrganization String
+  userId           String
+  user             User        @relation(fields: [userId], references: [id])
+  candidates       Candidate[] 
 
   @@map("elections")
 }
 
 model Candidate {
   id          String   @id() @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   name        String
   description String
   image       String?
@@ -49,5 +50,7 @@ model Candidate {
 
 enum Role {
   SUPER_USER
+  
+  GROUP
   USER
 }

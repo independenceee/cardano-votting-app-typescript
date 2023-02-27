@@ -1,2 +1,3 @@
-export * from './create-eclection.dto';
+export * from './create-election.dto';
 export * from './edit-election.dto';
+

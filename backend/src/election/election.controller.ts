@@ -6,7 +6,6 @@ import {
     HttpCode,
     HttpStatus,
     Post,
-    Req,
     UseGuards,
     ParseUUIDPipe,
     Patch,
@@ -56,7 +55,7 @@ export class ElectionController {
     @Delete(':id')
     deleteElectionById(
         @GetUser('id') userId: string,
-        @Param('id', ParseUUIDPipe) electionId: number,
+        @Param('id', ParseUUIDPipe) electionId: string,
     ) {
         return this.electionService.deleteElectionById(userId, electionId);
     }
