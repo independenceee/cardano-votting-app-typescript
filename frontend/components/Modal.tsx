@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useWalletList } from "@meshsdk/react";
 import { AiOutlineClose } from "react-icons/ai";
-import Wallet from "../layouts/ConnectWallet/Wallet";
 import { WalletType } from "../type";
+import Wallet from "./Wallet";
 import { WalletContext } from "../contexts/WalletContext";
 type Props = {
     showModal: () => void;

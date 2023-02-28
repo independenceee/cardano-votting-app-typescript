@@ -13,7 +13,10 @@ module.exports = {
             },
         },
         screens: {
-            sidebar: { max: "900px" },
+            desktop: { min: "1279px" }, // max: 1535
+            laptop: { min: "1024px", max: "1279px" },
+            tablet: { min: "640px", max: "1023px" },
+            mobile: { min: "350px", max: "639px" },
         },
     },
     plugins: [],

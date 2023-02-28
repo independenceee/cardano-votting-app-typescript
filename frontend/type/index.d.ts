@@ -11,6 +11,9 @@ export type WalletType = {
     disconnectWallet: () => Promise<void>;
     balance: Balance[];
     address: string;
+    isShowModal: boolean;
+    handleHiddenModal: () => void;
+    handleShowModal: () => void;
 };
 
 export type ModalType = {

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import WalletProvider from "./WalletContext";
-import ModalProvider from "./ModaContext";
+import ModalProvider from "./ModalContext";
 
 type Props = {
     children: ReactNode;

@@ -1,17 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ConnectWallet from "../ConnectWallet";
-import { AiFillHome } from "react-icons/ai";
-import { MdHowToVote } from "react-icons/md";
-import { IoCreate } from "react-icons/io5";
-import { IoMdContact } from "react-icons/io";
+import Button from "../../components/Button";
 import Modal from "../../components/Modal";
-import { ModalType } from "../../type";
-import { ModalContext } from "../../contexts/ModaContext";
+import { WalletContext } from "../../contexts/WalletContext";
+import { WalletType } from "../../type";
 
 const styles = {
-    container: `bg-[#eef0f4] font-poppin fixed top-0 left-0 right-0 h-[70px] bg-transparent flex items-center justify-between  px-[37px] py-0 leading-[16px] z-[3] border-b-[1px] border-b-solid border-[#00316b] shadow-lg`,
+    container: `bg-[#ffffff] h-[70px] bg-transparent flex items-center justify-between  px-[37px] py-0 leading-[16px] z-[3]`,
     logoContainer: `p-0 w-[80px] mt-[4px] max-h-[70px] text-[0px] inline-block`,
     logoImage: `block w-[100%]`,
     navbar: `flex items-center h-[100%] m-0 p-0 ml-[40px] sidebar:hidden`,
@@ -23,8 +19,12 @@ const styles = {
 type Props = {};
 
 const Header = function ({}: Props) {
-    const { isShowModal, handleShowModal, handleHiddenModal } =
-        useContext<ModalType>(ModalContext);
+    const {
+        connected,
+        isShowModal,
+        handleShowModal,
+        handleHiddenModal,
+    } = useContext<WalletType>(WalletContext);
 
     return (
         <header className={styles.container}>
@@ -38,12 +38,12 @@ const Header = function ({}: Props) {
                 </Link>
                 <Link className={styles.navbarLink} href="">
                     <span className={styles.navbarContent}>
-                        ALL VOTES
+                        CREATE BALLOT
                     </span>
                 </Link>
                 <Link className={styles.navbarLink} href="">
                     <span className={styles.navbarContent}>
-                        CONTACT
+                        VIEW BALLOT
                     </span>
                 </Link>
                 <Link className={styles.navbarLink} href="">
@@ -55,7 +55,27 @@ const Header = function ({}: Props) {
                     </span>
                 </Link>
             </nav>
-            <ConnectWallet connectWallet={handleShowModal} />
+
+            {!connected ? (
+                <Button
+                    title="Connect Wallet"
+                    handleOnclick={handleShowModal}
+                    styleContainer="text-[white] rounded-[8px] !font-[600] px-[12px] py-[8px] bg-gradient-to-r from-[#00b1ff] to-[#0832d3]"
+                    path={null}
+                />
+            ) : (
+                <button
+                    // onClick={handleShowInformation}
+                    className="inline-flex items-center justify-center relative select-none appearance-none rounded-md font-semibold h-[44px] w-[67px] px-[16px] bg-[#EDF2F7]"
+                >
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7WFnA54h3YI02YzQ4_BZlORyUh6xR8rpdRELLi03m&s"
+                        alt=""
+                        className="w-[35px] h-[35px]"
+                    />
+                    {/* {showInformation && <InformationAccount />} */}
+                </button>
+            )}
 
             {isShowModal && (
                 <Modal

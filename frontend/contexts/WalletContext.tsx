@@ -17,26 +17,37 @@ type WalletType = {
     disconnectWallet: () => Promise<void>;
     balance: Balance[];
     address: string;
+
+    isShowModal: boolean;
+    handleHiddenModal: () => void;
+    handleShowModal: () => void;
 };
 
-export const WalletContext = createContext<
-    WalletType 
->(null!);
+export const WalletContext = createContext<WalletType>(null!);
 
 const WalletProvider = function ({ children }: Props) {
     const { wallet, connect, connected, disconnect } = useWallet();
-
+    const [isShowModal, setIsShowModal] = useState<boolean>(false);
     const [address, setAddress] = useState<string>("");
     const [balance, setBalance] = useState<Array<Balance>>([]);
 
+
+    
+
     const connectWallet = async function (walletName: string) {
         try {
-            await connect(walletName);
-            if (connected) {
-                const balance = await wallet.getBalance();
-                setBalance(balance);
-                const address = await wallet.getChangeAddress();
-                setAddress(address);
+            if (!connected) {
+                await connect(walletName);
+                await setIsShowModal(false);
+                if (connected) {
+                    const balance = await wallet.getBalance();
+                    setBalance(balance);
+                    const address = await wallet.getChangeAddress();
+                    setAddress(address);
+                    console.log("re-render");
+                }
+            } else {
+                await setIsShowModal(false);
             }
         } catch (error) {
             throw error;
@@ -54,6 +65,14 @@ const WalletProvider = function ({ children }: Props) {
         }
     };
 
+    const handleShowModal = function () {
+        setIsShowModal(true);
+    };
+
+    const handleHiddenModal = function () {
+        setIsShowModal(false);
+    };
+
     return (
         <WalletContext.Provider
             value={{
@@ -64,6 +83,9 @@ const WalletProvider = function ({ children }: Props) {
                 disconnectWallet,
                 balance,
                 address,
+                isShowModal,
+                handleShowModal,
+                handleHiddenModal,
             }}
         >
             {children}
