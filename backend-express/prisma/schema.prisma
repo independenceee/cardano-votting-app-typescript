@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String     @id() @default(uuid())
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  firstName     String?
+  lastName      String?
+  email         String     @unique()
+  hash          String
+  addressWallet String?
+  elections     Election[]
+
+  @@map("users")
+}
+
+model Election {
+  id               String      @id() @default(uuid())
+  mainQuestion     String?
+  description      String?
+  nameOrganization String?
+  userId           String
+  user             User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  candidates       Candidate[]
+
+  @@map("elections")
+}
+
+model Candidate {
+  id          String   @id() @default(uuid())
+  name        String
+  description String
+  image       String?
+  electionId  String
+  election    Election @relation(fields: [electionId], references: [id], onDelete: Cascade)
+
+  @@map("candidate")
+}
+
+enum Role {
+  SUPER_USER
+  USER
+}
