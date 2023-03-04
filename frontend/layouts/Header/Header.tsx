@@ -7,10 +7,10 @@ import { WalletContext } from "../../contexts/WalletContext";
 import { WalletType } from "../../type";
 
 const styles = {
-    container: `bg-[#ffffff] h-[70px] bg-transparent flex items-center justify-between  px-[37px] py-0 leading-[16px] z-[3]`,
-    logoContainer: `p-0 w-[80px] mt-[4px] max-h-[70px] text-[0px] inline-block`,
-    logoImage: `block w-[100%]`,
-    navbar: `flex items-center h-[100%] m-0 p-0 ml-[40px] sidebar:hidden`,
+    header: `sticky top-0 right-0 left-0 h-[70px] bg-[#D7D9DD] flex items-center justify-between py-0 px-[36px] z-[3] tracking-[16px] shadow-sm`,
+    logo: `p-0 w-[80px] mt-[4px] max-h-[70px] text-0 inline-block`,
+    logoImage: `block w-full`,
+    navbar: `flex items-center flex-nowrap flex-row h-full justify-end m-0 p-0 relative ml-[25px] mr-auto`,
     navbarLink: `flex items-center py-0 px-[12px] mx-[10px] group`,
     navbarIcon: `h-[20px] min-w-[20px] w-[20px] z-auto group-hover:animate-bounce text-[#00316b]`,
     navbarContent: `text-[#00316b] text-[13px]  font-[700] leading-[1.08] tracking-[1.42px] py-[2px] px-0 whitespace-nowrap relative before:bg-[#00316b] before:rounded-tl-[0px] before:rounded-tr-[0px] before:rounded-bl-[4px] before:rounded-br-[4px] before:bottom-[-6px] before:content-[''] before:h-[2px] before:left-0 before:opacity-0 before:absolute before:right-0 before:origin-navbar before:transform before:scale-0 before:transition-all before:duration-300 before:invisible before:w-auto group-hover:before:transform group-hover:before:visible group-hover:before:opacity-100 group-hover:before:scale-100`,
@@ -25,37 +25,36 @@ const Header = function ({}: Props) {
         handleShowModal,
         handleHiddenModal,
     } = useContext<WalletType>(WalletContext);
-
     return (
-        <header className={styles.container}>
-            <Link href="/" className={styles.logoContainer}>
-                {/* <Image className={styles.logoImage} src="" alt="" /> */}
-                <span className="text-[30px]">I Vote</span>
+        <header className={styles.header}>
+            <Link className={styles.logo} href="/">
+                <Image className={styles.logoImage} src="" alt="" />
             </Link>
             <nav className={styles.navbar}>
                 <Link className={styles.navbarLink} href="">
-                    <span className={styles.navbarContent}>HOME</span>
+                    <span className={styles.navbarContent}>Home</span>
                 </Link>
                 <Link className={styles.navbarLink} href="">
                     <span className={styles.navbarContent}>
-                        CREATE BALLOT
+                        All ballot
                     </span>
                 </Link>
                 <Link className={styles.navbarLink} href="">
                     <span className={styles.navbarContent}>
-                        VIEW BALLOT
+                        Create vote
                     </span>
                 </Link>
                 <Link className={styles.navbarLink} href="">
-                    <span className={styles.navbarContent}>POST</span>
+                    <span className={styles.navbarContent}>
+                        Contact
+                    </span>
                 </Link>
                 <Link className={styles.navbarLink} href="">
                     <span className={styles.navbarContent}>
-                        LOGIN
+                        Login
                     </span>
                 </Link>
             </nav>
-
             {!connected ? (
                 <Button
                     title="Connect Wallet"
