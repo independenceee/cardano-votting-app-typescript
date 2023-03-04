@@ -2,8 +2,8 @@ import React from "react";
 
 type Props = {};
 
-const Create = function ({}: Props) {
+const CreateId = function ({}: Props) {
     return <></>;
 };
 
-export default Create;
+export default CreateId;

@@ -1,7 +1,6 @@
 import React from "react";
-import Main from "../apps/ballot";
-import Layout from "../layouts";
-
+import Main from "../../apps/ballot";
+import Layout from "../../layouts";
 
 type Props = {};
 

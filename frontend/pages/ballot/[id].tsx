@@ -2,8 +2,8 @@ import React from "react";
 
 type Props = {};
 
-const Vote = function ({}: Props) {
+const BallotId = function ({}: Props) {
     return <></>;
 };
 
-export default Vote;
+export default BallotId;
