@@ -2,8 +2,6 @@ import React, { ChangeEvent, useState } from "react";
 
 type Props = {};
 
-
-
 const Create = function ({}: Props) {
     const [inputList, setInputList] = useState<Array<any>>([
         {
@@ -24,12 +22,20 @@ const Create = function ({}: Props) {
         setInputList([...inputList, { name: "" }]);
     };
 
-    const handleRemoteFeild = function () {};
+    const handleRemoteFeild = function (index: any) {
+        const list = [...inputList];
+        list.splice(index, 1);
+        setInputList(list);
+    };
+
+    const hanleSubmit = function () {
+        console.log(inputList);
+    };
 
     return (
         <main>
             <div>
-                {inputList.map((input, index: number) => {
+                {inputList.map((input, index) => {
                     return (
                         <div>
                             <input
@@ -39,13 +45,25 @@ const Create = function ({}: Props) {
                                     handleInputChange(e, index)
                                 }
                             />
-                            <span>-</span>
-                            <span onClick={handleAddfeild}>+</span>
+                            {inputList.length !== 1 && (
+                                <button
+                                    onClick={() =>
+                                        handleRemoteFeild(index)
+                                    }
+                                >
+                                    -
+                                </button>
+                            )}
+                            {inputList.length - 1 === index && (
+                                <button onClick={handleAddfeild}>
+                                    +
+                                </button>
+                            )}
                         </div>
                     );
                 })}
 
-                <button>Submit</button>
+                <button onClick={hanleSubmit}>Submit</button>
             </div>
         </main>
     );
