@@ -9,7 +9,7 @@ import {
     Transaction,
     UTxO,
 } from "@meshsdk/core";
-import { features } from "process";
+
 
 type Data = {
     recipientAddress: string;
@@ -47,7 +47,17 @@ const handler = async function (
             image: "https://yt3.ggpht.com/ONEZ74QDZHAgAFAqVQmBxc1pJM7CslFI1djWQzXeFjVJJXeSyVaicAMuYCMkF1h8ZDlNtc6-=s88-c-k-c0x00ffffff-no-rj-mo",
             mediaType: "image/png",
             description: "Nguyễn Duy Khánh",
-            position: "Tech leader",
+            candidate: [
+                {
+                    name: "candidate 2",
+                    image: ""
+                    
+                },
+                {
+                    name: "candidate 1",
+                    image: ""
+                }
+            ]
         };
 
         const asset: Mint = {

@@ -3,14 +3,14 @@ import React, { ChangeEvent, useState } from "react";
 type Props = {};
 
 const Vote = function ({}: Props) {
-    const [checkValue, setCheckValue] = useState([]);
+    const [checkValue, setCheckValue] = useState<string>("");
 
     const handleChange = function (
         event: ChangeEvent<HTMLInputElement>,
     ) {
         const { value, checked } = event.target;
 
-        if(checked) {
+        if (checked) {
             setCheckValue(value);
         }
     };

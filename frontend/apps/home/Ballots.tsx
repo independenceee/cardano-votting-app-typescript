@@ -1,5 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaLocationArrow } from "react-icons/fa";
+import {useRouter} from "next/router";
+
 type Props = {};
 
 const styles = {
@@ -7,6 +10,11 @@ const styles = {
 };
 
 const Ballots = function ({}: Props) {
+    const router = useRouter();
+
+    
+
+
     return (
         <motion.div
             initial={{
@@ -22,13 +30,19 @@ const Ballots = function ({}: Props) {
             transition={{ duration: 1.5 }}
             className={styles.container}
         >
-            <div className="p-[12px]">
-                <p className="text-[24px]">More Offers</p>
-                <h1 className="text-[50px] mt-[30px]">
-                    The most inclusive voting platform on Cardano
-                </h1>
-                <div className="">
-                    Create Vote Now
+            <div className="p-[12px] h-full">
+                <div className="p-[12px] h-full grid grid-cols-1 content-between group">
+                    <div className="flex justify-between">
+                        <p className="w-[35%]">HAVE SOME QUESTION</p>
+                        <div>
+                            <FaLocationArrow className="font-bold text-[24px] group-hover:animate-pulse" />
+                        </div>
+                    </div>
+                    <div>
+                        <h1 className="font-[600] text-[50px]">
+                            All Ballot
+                        </h1>
+                    </div>
                 </div>
             </div>
         </motion.div>
