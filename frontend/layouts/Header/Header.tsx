@@ -7,7 +7,7 @@ import { WalletContext } from "../../contexts/WalletContext";
 import { WalletType } from "../../type";
 
 const styles = {
-    header: `sticky top-0 right-0 left-0 h-[70px] bg-[#D7D9DD] flex items-center justify-between py-0 px-[36px] z-[3] tracking-[16px] shadow-sm`,
+    header: `sticky top-0 right-0 left-0 h-[70px] bg-[#fffff] flex items-center justify-between py-0 px-[36px] z-[3] tracking-[16px] shadow-sm`,
     logo: `p-0 w-[80px] mt-[4px] max-h-[70px] text-0 inline-block`,
     logoImage: `block w-full`,
     navbar: `flex items-center flex-nowrap flex-row h-full justify-end m-0 p-0 relative ml-[25px] mr-auto`,

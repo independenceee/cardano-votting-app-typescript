@@ -7,16 +7,10 @@ type Props = {};
 
 const Home = function ({}: Props) {
     return (
-        <main className="h-screen snap-y snap-mandatory overflow-scroll overflow-x-hidden">
-            <Layout>
-                <div className="snap-center">
-                    <Main />
-                </div>
-                <div className="snap-center">
-                    <About />
-                </div>
-            </Layout>
-        </main>
+        <Layout>
+            <Main />
+            <About />
+        </Layout>
     );
 };
 

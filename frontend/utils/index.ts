@@ -1,26 +1,28 @@
+import { UTxO } from "@meshsdk/core";
 import axios from "axios";
 
-const httpRequest = axios.create({
-    baseURL: process.env.MINT_TRANSACTION_BASE_URL,
+const instance = axios.create({
+    baseURL: "/api/",
     withCredentials: true,
 });
 
-export const get = async function (path: string, body = {}) {
-    return httpRequest.get(`${path}`, body).then(({ data }) => {
-        return data;
-    });
-};
+export function post(route: string, body = {}) {
+    return instance
+        .post(`${route}`, body)
+        .then(({ data }) => {
+            return data;
+        })
+        .catch((error) => {
+            throw error;
+        });
+}
 
-export const post = async function (path: string, body = {}) {
-    return httpRequest.post(`${path}`, body).then(({ data }) => {
-        return data;
+export async function createTransaction(
+    recipientAddress: string,
+    utxos: UTxO[],
+) {
+    return await post(`create-minting-transaction`, {
+        recipientAddress,
+        utxos,
     });
-};
-
-export const deleteOption = async function (path: string, body = {}) {
-    return httpRequest.delete(`${path}`, body).then(({ data }) => {
-        return data;
-    });
-};
-
-export default httpRequest;
+}

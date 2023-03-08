@@ -8,7 +8,7 @@ type Props = {
 
 const Layout = function ({ children }: Props) {
     return (
-        <div className="bg-[#eef0f4]">
+        <div className="bg-[#ffffff]">
             <Header />
             <main>{children}</main>
             <Footer />
