@@ -45,6 +45,7 @@ model Ballot {
   name        String
   description String
   image       String
+  addressWallet String
   startTime   DateTime?
   endTime     DateTime?
   status      String?
